@@ -1,0 +1,8 @@
+# MatchArena backend — Python deps (pip picks 3.14-compatible latest)
+fastapi>=0.115
+uvicorn>=0.30
+python-multipart>=0.0.9
+PyJWT>=2
+google-auth>=2
+requests>=2
+Pillow>=11
