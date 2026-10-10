@@ -1,0 +1,21 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# App data (ephemeral on free tier, never commit)
+backend/data/
+backend/uploads/
+backend/logs/
+
+# Secrets
+.env
+backend/.env
+
+# OS files
+.DS_Store
+Thumbs.db

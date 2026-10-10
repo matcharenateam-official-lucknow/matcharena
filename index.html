@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MatchArena — Lucknow's premier pick-up sports club</title>
+<meta name="description" content="MatchArena, Lucknow. Register as a solo player in football, cricket, badminton, pickleball or basketball — we build the team, conduct the match, and you play." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23C09A45'/%3E%3Cpath d='M14 46V18h8.4l9.8 16.4L42 18h8v28h-8V29.4L32.6 46h-2L20 29.4V46z' fill='%232A1E05'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="football">
+
+<a class="skip-link" href="#how">Skip to content</a>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="pre-inner">
+    <div class="pre-mark">MA</div>
+    <div class="pre-name"><span>MATCH</span><em>ARENA</em></div>
+    <div class="pre-line"><i></i></div>
+    <div class="pre-sub">Assembling the arena…</div>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="MatchArena home">
+      <span class="brand-mark">MA</span>
+      <span class="brand-name">Match<span class="serif-i">Arena</span></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#how">The idea</a></li>
+      <li><a href="#sports">Arenas</a></li>
+      <li><a href="#live">Match desk</a></li>
+      <li><a href="#shop" data-open-shop>Shop</a></li>
+      <li><a href="#careers">Careers</a></li>
+      <li><a href="#register" class="nav-cta btn-register" data-open-reg>Register to play</a></li>
+    </ul>
+    <div class="nav-tools">
+      <button class="auth-btn" id="authBtn" type="button">Sign in</button>
+      <button class="profile-chip" id="profileChip" type="button" hidden aria-haspopup="dialog" aria-label="Open your player profile">
+        <span class="pc-avatar" id="pcAvatar">?</span><span class="pc-name" id="pcName">Player</span>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="Open cart" aria-expanded="false">🛒<span class="cart-count" id="cartCount" hidden>0</span></button>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="arena-canvas" aria-hidden="true"></canvas>
+  <div class="hero-fade"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="badge"><span class="dot"></span>Lucknow · Est. 2024</span>
+      <h1>No team?<br />We build one<span class="dot-gold">.</span></h1>
+      <p class="lead">Register as a solo player. MatchArena scouts the city, drafts your squad and runs the match — football, cricket, badminton, pickleball and basketball. You just play.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-register" href="#register" data-open-reg>Register &amp; get drafted</a>
+      </div>
+      <div class="hero-stats" role="list">
+        <div class="stat" role="listitem"><b class="counter" data-count="3.4" data-dec="1" data-suffix="K+">0</b><span>Solo players registered</span></div>
+        <div class="stat" role="listitem"><b class="counter" data-count="520" data-suffix="+">0</b><span>Matches conducted</span></div>
+        <div class="stat" role="listitem"><b class="counter" data-count="5">0</b><span>Sports, one club</span></div>
+      </div>
+    </div>
+    <div class="hero-side" aria-hidden="true"></div>
+  </div>
+  <div class="vword" id="vword" aria-hidden="true"></div>
+  <!-- hero dock: sport tabs + live info panel sit side by side above the hero floor -->
+  <div class="hero-dock">
+    <div class="sport-tabs" id="sportTabs" role="tablist" aria-label="Choose sport"></div>
+    <div class="sport-panel" id="sportPanel">
+      <span class="sp-ico" id="spIco">⚽</span>
+      <div><div class="sp-name" id="spName">Football</div>
+      <div class="sp-tag" id="spTag">5v5 · 7v7 · 11v11 on real turf</div>
+      <div class="sp-stat" id="spStat">1,140 players registered</div></div>
+    </div>
+  </div>
+  <div class="hint hint-drag" aria-hidden="true">Drag to rotate<span class="hand">✋</span></div>
+  <div class="hint hint-scroll" aria-hidden="true">Scroll<span class="scr-arr" aria-hidden="true">↓</span></div>
+</header>
+
+<!-- ============ THE IDEA ============ -->
+<section id="how">
+  <div class="container">
+    <span class="kicker">The idea</span>
+    <h2 class="sec-title">One club. <em>Every sport.</em></h2>
+    <p class="sec-sub">You love the game but have no eleven, no doubles partner, no crew. MatchArena is the missing piece — a club that turns individual players into teams, then conducts the match for you.</p>
+    <div class="steps">
+      <div class="step card reveal">
+        <div class="step-num">I</div>
+        <h3>You register</h3>
+        <p>Name, phone, your sports and level. A thirty-second form — your player card goes live instantly.</p>
+      </div>
+      <div class="step card reveal" style="transition-delay:.08s">
+        <div class="step-num">II</div>
+        <h3>We draft</h3>
+        <p>Our backend balances the pool — skill, fitness and position — and forms even, competitive squads.</p>
+      </div>
+      <div class="step card reveal" style="transition-delay:.16s">
+        <div class="step-num">III</div>
+        <h3>We conduct</h3>
+        <p>Venue, umpire or referee, scorekeeping and rules — MatchArena runs the match end to end.</p>
+      </div>
+      <div class="step card reveal" style="transition-delay:.24s">
+        <div class="step-num">IV</div>
+        <h3>You play</h3>
+        <p>Show up, compete, and build your reputation. Every match earns you a rating and a story.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPORTS — arena switch + 3D modals ============ -->
+<section id="sports" class="tint">
+  <div class="container">
+    <span class="kicker">The arenas</span>
+    <h2 class="sec-title">Five arenas. <em>One city.</em></h2>
+    <p class="sec-sub">Pick a sport and the whole page takes its vibe — the hero court, the colours, the arena. Every model can be taken apart: drag to orbit, hover to explode.</p>
+    <p class="stage-hint global">Tap a sport to expand its card — tap it again to collapse · register for the game or join the WhatsApp group · <b>◈ 3D</b> opens the exploded arena</p>
+
+    <div class="arena-switch" id="arenaSwitch" role="tablist" aria-label="Choose a sport arena">
+      <button class="arena-btn active" data-sport="football"><span class="em">⚽</span><span class="nm">Football</span></button>
+      <button class="arena-btn" data-sport="cricket"><span class="em">🏏</span><span class="nm">Cricket</span></button>
+      <button class="arena-btn" data-sport="badminton"><span class="em">🏸</span><span class="nm">Badminton</span></button>
+      <button class="arena-btn" data-sport="basketball"><span class="em">🏀</span><span class="nm">Basketball</span></button>
+      <button class="arena-btn" data-sport="pickleball"><span class="em">🎾</span><span class="nm">Pickleball</span></button>
+    </div>
+
+    <div class="sport-cards">
+      <article class="sport-card active" id="sport-football" data-sport="football">
+        <div class="sc-head">
+          <span class="sport-eyebrow">Arena 01 · Football</span>
+          <button type="button" class="sc-3d" data-stage="football" aria-label="Open the 3D football arena">◈ 3D arena</button>
+        </div>
+        <h3 class="sport-name">Football</h3>
+        <p class="sport-desc">Grass, floodlights and a goal at each end that's waiting for your touch. 5v5, 7v7 and full 11v11 at partner turfs across Lucknow.</p>
+        <ul class="specs">
+          <li><span>Formats</span>5v5 · 7v7 · 11v11</li>
+          <li><span>Skill levels</span>All levels · beginner to competitive</li>
+        </ul>
+        <div class="sc-next">
+          <div class="sc-next-head"><span>Next game</span><b class="sc-next-open">7 spots left</b></div>
+          <div class="sc-next-row"><b>Football Night Run</b><span>5v5 · All levels</span></div>
+          <div class="sc-next-row"><b>GreenTurf Arena</b><span>Gomti Nagar, Lucknow · turf</span></div>
+          <div class="sc-next-row"><b>Saturday · 8:00 PM</b><span>6 Sep 2026</span></div>
+          <div class="sc-next-fee">Entry ₹250<i>/player</i></div>
+        </div>
+        <div class="sport-meta"><b class="counter" data-count="1140">0</b><span>players registered</span></div>
+        <div class="sport-actions">
+          <a class="btn btn-wa btn-sm" data-wa="football" href="https://chat.whatsapp.com/Kzhullc0bibBB6wR30nf4D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join WhatsApp group</a>
+          <button class="btn btn-gold btn-sm sport-register" data-sport="football">Register · join game</button>
+        </div>
+      </article>
+
+      <article class="sport-card" id="sport-cricket" data-sport="cricket">
+        <div class="sc-head">
+          <span class="sport-eyebrow">Arena 02 · Cricket</span>
+          <button type="button" class="sc-3d" data-stage="cricket" aria-label="Open the 3D cricket arena">◈ 3D arena</button>
+        </div>
+        <h3 class="sport-name">Cricket</h3>
+        <p class="sport-desc">Six-a-side box cricket and weekend gully leagues. Walk in alone, walk out with a team that fields, bats and celebrates together.</p>
+        <ul class="specs">
+          <li><span>Formats</span>6-a-side box · gully league</li>
+          <li><span>Skill levels</span>Beginner–Competitive</li>
+        </ul>
+        <div class="sc-next">
+          <div class="sc-next-head"><span>Next game</span><b class="sc-next-open">3 spots left</b></div>
+          <div class="sc-next-row"><b>Box Cricket Night</b><span>6-a-side · Beginner–Intermediate</span></div>
+          <div class="sc-next-row"><b>SixerBox</b><span>Indira Nagar, Lucknow · box court</span></div>
+          <div class="sc-next-row"><b>Saturday · 8:00 PM</b><span>5 Sep 2026</span></div>
+          <div class="sc-next-fee">Entry ₹300<i>/player</i></div>
+        </div>
+        <div class="sport-meta"><b class="counter" data-count="860">0</b><span>players registered</span></div>
+        <div class="sport-actions">
+          <a class="btn btn-wa btn-sm" data-wa="cricket" href="https://chat.whatsapp.com/Kzhullc0bibBB6wR30nf4D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join WhatsApp group</a>
+          <button class="btn btn-gold btn-sm sport-register" data-sport="cricket">Register · join game</button>
+        </div>
+      </article>
+
+      <article class="sport-card" id="sport-badminton" data-sport="badminton">
+        <div class="sc-head">
+          <span class="sport-eyebrow">Arena 03 · Badminton</span>
+          <button type="button" class="sc-3d" data-stage="badminton" aria-label="Open the 3D badminton arena">◈ 3D arena</button>
+        </div>
+        <h3 class="sport-name">Badminton</h3>
+        <p class="sport-desc">Fast hands, faster rallies. Singles and doubles ladders where every shuttle counts — and every player finds their level.</p>
+        <ul class="specs">
+          <li><span>Formats</span>Singles · doubles ladder</li>
+          <li><span>Skill levels</span>Beginner–Advanced</li>
+        </ul>
+        <div class="sc-next">
+          <div class="sc-next-head"><span>Next game</span><b class="sc-next-open">2 spots left</b></div>
+          <div class="sc-next-row"><b>Doubles Ladder Night</b><span>Doubles · Intermediate</span></div>
+          <div class="sc-next-row"><b>SmashCourt</b><span>Aliganj, Lucknow · indoor court</span></div>
+          <div class="sc-next-row"><b>Tuesday · 7:00 PM</b><span>8 Sep 2026</span></div>
+          <div class="sc-next-fee">Entry ₹200<i>/player</i></div>
+        </div>
+        <div class="sport-meta"><b class="counter" data-count="640">0</b><span>players registered</span></div>
+        <div class="sport-actions">
+          <a class="btn btn-wa btn-sm" data-wa="badminton" href="https://chat.whatsapp.com/Kzhullc0bibBB6wR30nf4D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join WhatsApp group</a>
+          <button class="btn btn-gold btn-sm sport-register" data-sport="badminton">Register · join game</button>
+        </div>
+      </article>
+
+      <article class="sport-card" id="sport-basketball" data-sport="basketball">
+        <div class="sc-head">
+          <span class="sport-eyebrow">Arena 04 · Basketball</span>
+          <button type="button" class="sc-3d" data-stage="basketball" aria-label="Open the 3D basketball arena">◈ 3D arena</button>
+        </div>
+        <h3 class="sport-name">Basketball</h3>
+        <p class="sport-desc">Streetball energy on proper courts. Two hoops, three-point arcs and 3v3 / 5v5 runs in Gomti Nagar and Vikas Nagar.</p>
+        <ul class="specs">
+          <li><span>Formats</span>3v3 · 5v5 streetball</li>
+          <li><span>Skill levels</span>All levels · street to competitive</li>
+        </ul>
+        <div class="sc-next">
+          <div class="sc-next-head"><span>Next game</span><b class="sc-next-open">4 spots left</b></div>
+          <div class="sc-next-row"><b>3v3 Streetball Night</b><span>3v3 · All levels</span></div>
+          <div class="sc-next-row"><b>HoopZone</b><span>Gomti Nagar, Lucknow · hard court</span></div>
+          <div class="sc-next-row"><b>Friday · 6:30 PM</b><span>4 Sep 2026</span></div>
+          <div class="sc-next-fee">Entry ₹200<i>/player</i></div>
+        </div>
+        <div class="sport-meta"><b class="counter" data-count="470">0</b><span>players registered</span></div>
+        <div class="sport-actions">
+          <a class="btn btn-wa btn-sm" data-wa="basketball" href="https://chat.whatsapp.com/Kzhullc0bibBB6wR30nf4D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join WhatsApp group</a>
+          <button class="btn btn-gold btn-sm sport-register" data-sport="basketball">Register · join game</button>
+        </div>
+      </article>
+
+      <article class="sport-card" id="sport-pickleball" data-sport="pickleball">
+        <div class="sc-head">
+          <span class="sport-eyebrow">Arena 05 · Pickleball</span>
+          <button type="button" class="sc-3d" data-stage="pickleball" aria-label="Open the 3D pickleball arena">◈ 3D arena</button>
+        </div>
+        <h3 class="sport-name">Pickleball</h3>
+        <p class="sport-desc">The fastest-growing game in India has landed in Lucknow. Sunrise rallies on Vibhuti Khand courts — easy to learn, hard to put down.</p>
+        <ul class="specs">
+          <li><span>Formats</span>Singles · doubles rallies</li>
+          <li><span>Skill levels</span>Just starting–Advanced</li>
+        </ul>
+        <div class="sc-next">
+          <div class="sc-next-head"><span>Next game</span><b class="sc-next-open">2 spots left</b></div>
+          <div class="sc-next-row"><b>Sunrise Pickleball</b><span>Doubles · Just starting</span></div>
+          <div class="sc-next-row"><b>PaddleUp Courts</b><span>Vibhuti Khand, Lucknow · outdoor court</span></div>
+          <div class="sc-next-row"><b>Saturday · 6:30 AM</b><span>5 Sep 2026</span></div>
+          <div class="sc-next-fee">Entry ₹150<i>/player</i></div>
+        </div>
+        <div class="sport-meta"><b class="counter" data-count="310">0</b><span>players registered</span></div>
+        <div class="sport-actions">
+          <a class="btn btn-wa btn-sm" data-wa="pickleball" href="https://chat.whatsapp.com/Kzhullc0bibBB6wR30nf4D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join WhatsApp group</a>
+          <button class="btn btn-gold btn-sm sport-register" data-sport="pickleball">Register · join game</button>
+        </div>
+      </article>
+    </div>
+
+    <!-- sport-specific application form (opens below the selected card) -->
+    <div class="sport-app" id="sportApp" hidden>
+      <div class="sport-app-inner" id="sportAppInner"></div>
+    </div>
+
+    <!-- sport clubroom — rendered per selected sport (games/venues/stats/community) -->
+    <div class="sport-detail" id="sportDetail" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ JOIN THE COMMUNITY (below the five arenas) ============ -->
+<section class="join" id="join">
+  <div class="container">
+    <div class="join-wrap">
+      <div class="join-copy reveal">
+        <span class="kicker">Join the community</span>
+        <h2>Never miss a <em>match.</em></h2>
+        <p>One free registration gets you fixture invites on WhatsApp, a player rating that grows, and first dibs on match-day jerseys. Built for sports enthusiasts, by sports enthusiasts.</p>
+        <div class="join-points">
+          <div><span>⚽</span> Pick your sports — the whole site takes your vibe</div>
+          <div><span>📲</span> Match invites straight to WhatsApp</div>
+          <div><span>🏆</span> Free first draft, then play every week</div>
+        </div>
+        <a class="btn btn-wa join-wa" href="https://chat.whatsapp.com/Kzhullc0bibBB6wR30nf4D" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> Join the community on WhatsApp</a>
+      </div>
+      <form class="join-form reveal" id="joinForm" style="transition-delay:.1s" novalidate>
+        <label>Full name *<input type="text" name="jname" placeholder="Govind Singh Yadav" required autocomplete="name" /></label>
+        <div class="jf-row">
+          <label>Phone number *<input type="tel" name="jphone" placeholder="98xxxxxxxx" required autocomplete="tel" inputmode="numeric" /></label>
+          <label>Email address *<input type="email" name="jemail" placeholder="you@email.com" required autocomplete="email" /></label>
+        </div>
+        <div class="jf-row">
+          <label>City *<select name="jcity" required><option value="">Select your city</option><option>Lucknow</option><option>Delhi</option><option>Bangalore</option><option>Pune</option><option>Mumbai</option><option>Other</option></select></label>
+          <label>Skill level *<select name="jlevel" required><option value="">Select skill level</option><option>Just starting</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Competitive</option></select></label>
+        </div>
+        <div class="sport-check">
+          <span>Sports you play *</span>
+          <div class="chips" id="joinChips">
+            <label class="chip"><input type="checkbox" name="jsport" value="Football" /><span>⚽ Football</span></label>
+            <label class="chip"><input type="checkbox" name="jsport" value="Cricket" /><span>🏏 Cricket</span></label>
+            <label class="chip"><input type="checkbox" name="jsport" value="Badminton" /><span>🏸 Badminton</span></label>
+            <label class="chip"><input type="checkbox" name="jsport" value="Basketball" /><span>🏀 Basketball</span></label>
+            <label class="chip"><input type="checkbox" name="jsport" value="Pickleball" /><span>🎾 Pickleball</span></label>
+          </div>
+        </div>
+        <label class="agree jagree"><input type="checkbox" required /><span>I agree to receive WhatsApp / email updates about games, community events and Match Arena activities.</span></label>
+        <button class="btn btn-gold" type="submit">Join Match Arena <span>→</span></button>
+        <div class="join-msg" id="joinMsg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3D ARENA MODALS (per sport) ============ -->
+<div class="stage-modal" id="stage-modal-football" data-modal="football" role="dialog" aria-modal="true" aria-label="Football 3D arena">
+  <div class="stage-backdrop" data-close></div>
+  <div class="stage-box">
+    <div class="stage-head"><span class="stage-title">⚽ Football arena</span><button class="stage-close" data-close aria-label="Close 3D arena">✕</button></div>
+    <div class="stage" data-scene="football">
+      <canvas></canvas>
+      <div class="stage-controls">
+        <button class="view-btn active" data-view="assembled">Assembled</button>
+        <button class="view-btn" data-view="exploded">Exploded view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stage-modal" id="stage-modal-cricket" data-modal="cricket" role="dialog" aria-modal="true" aria-label="Cricket 3D arena">
+  <div class="stage-backdrop" data-close></div>
+  <div class="stage-box">
+    <div class="stage-head"><span class="stage-title">🏏 Cricket arena</span><button class="stage-close" data-close aria-label="Close 3D arena">✕</button></div>
+    <div class="stage" data-scene="cricket">
+      <canvas></canvas>
+      <div class="stage-controls">
+        <button class="view-btn active" data-view="assembled">Assembled</button>
+        <button class="view-btn" data-view="exploded">Exploded view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stage-modal" id="stage-modal-badminton" data-modal="badminton" role="dialog" aria-modal="true" aria-label="Badminton 3D arena">
+  <div class="stage-backdrop" data-close></div>
+  <div class="stage-box">
+    <div class="stage-head"><span class="stage-title">🏸 Badminton arena</span><button class="stage-close" data-close aria-label="Close 3D arena">✕</button></div>
+    <div class="stage" data-scene="badminton">
+      <canvas></canvas>
+      <div class="stage-controls">
+        <button class="view-btn active" data-view="assembled">Assembled</button>
+        <button class="view-btn" data-view="exploded">Exploded view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stage-modal" id="stage-modal-basketball" data-modal="basketball" role="dialog" aria-modal="true" aria-label="Basketball 3D arena">
+  <div class="stage-backdrop" data-close></div>
+  <div class="stage-box">
+    <div class="stage-head"><span class="stage-title">🏀 Basketball arena</span><button class="stage-close" data-close aria-label="Close 3D arena">✕</button></div>
+    <div class="stage" data-scene="basketball">
+      <canvas></canvas>
+      <div class="stage-controls">
+        <button class="view-btn active" data-view="assembled">Assembled</button>
+        <button class="view-btn" data-view="exploded">Exploded view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stage-modal" id="stage-modal-pickleball" data-modal="pickleball" role="dialog" aria-modal="true" aria-label="Pickleball 3D arena">
+  <div class="stage-backdrop" data-close></div>
+  <div class="stage-box">
+    <div class="stage-head"><span class="stage-title">🎾 Pickleball arena</span><button class="stage-close" data-close aria-label="Close 3D arena">✕</button></div>
+    <div class="stage" data-scene="pickleball">
+      <canvas></canvas>
+      <div class="stage-controls">
+        <button class="view-btn active" data-view="assembled">Assembled</button>
+        <button class="view-btn" data-view="exploded">Exploded view</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MATCH DESK ============ -->
+<section id="live">
+  <div class="container">
+    <span class="kicker">Match desk</span>
+    <h2 class="sec-title">This week's <em>fixtures</em></h2>
+    <p class="sec-sub">Real dates, real venues, real spots left. Filter by sport and take the last seat on the bench.</p>
+    <div class="filters" id="filters">
+      <button class="chip active" data-f="all">All arenas</button>
+      <button class="chip" data-f="football">Football</button>
+      <button class="chip" data-f="cricket">Cricket</button>
+      <button class="chip" data-f="badminton">Badminton</button>
+      <button class="chip" data-f="basketball">Basketball</button>
+      <button class="chip" data-f="pickleball">Pickleball</button>
+    </div>
+    <div class="game-grid" id="gameGrid"></div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why" class="tint">
+  <div class="container">
+    <span class="kicker">The MatchArena standard</span>
+    <h2 class="sec-title">Built like a club, <em>not a booking app.</em></h2>
+    <p class="sec-sub">We don't just connect players — we're accountable for the match, from the draft to the final whistle.</p>
+    <div class="feat-grid">
+      <div class="feat card reveal"><div class="feat-ico">🎽</div><h3>Balanced drafts</h3><p>Skill, fitness and position are weighed so every match is competitive, never a mismatch.</p></div>
+      <div class="feat card reveal" style="transition-delay:.08s"><div class="feat-ico">🧑‍⚖️</div><h3>Officiated matches</h3><p>A referee or umpire on site, rules enforced, scores recorded for every fixture.</p></div>
+      <div class="feat card reveal" style="transition-delay:.16s"><div class="feat-ico">📊</div><h3>Player rating</h3><p>Attendance and performance shape your card — play well, draft better.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOP — slim CTA, jerseys live in the cart drawer ============ -->
+<section id="shop">
+  <div class="container">
+    <div class="shop-cta card reveal">
+      <div class="shop-cta-copy">
+        <span class="kicker">The shop</span>
+        <h2 class="sec-title">Wear the <em>arena.</em></h2>
+        <p class="sec-sub">MatchArena match-day jerseys — football, cricket, basketball, pickleball and badminton kits. Sizes S–XXL, ordered on WhatsApp.</p>
+      </div>
+      <button class="btn btn-gold" data-open-shop>Browse the shop <span>→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section id="register" class="tint">
+  <div class="container">
+    <div class="reg-wrap">
+      <div class="reg-copy reveal">
+        <span class="kicker">Join the club</span>
+        <h2 class="sec-title">Register as a <em>solo player</em></h2>
+        <p class="sec-sub">Thirty seconds. No team, no experience required. MatchArena handles the rest.</p>
+        <div class="reg-points">
+          <div><span>🎽</span> Drafted into a balanced squad for every fixture</div>
+          <div><span>🧑‍⚖️</span> Officiated matches at vetted Lucknow venues</div>
+          <div><span>📈</span> A player card that grows with every match</div>
+        </div>
+        <p class="reg-note">Headquartered in <b>Lucknow</b> · Founded by <b>Govind Singh Yadav</b></p>
+      </div>
+      <form class="reg-form" id="regForm" novalidate>
+        <label>Full name *<input type="text" name="name" placeholder="Your name" required autocomplete="name" /></label>
+        <div class="row2">
+          <label>Phone *<input type="tel" name="phone" placeholder="98xxxxxxxx" required autocomplete="tel" inputmode="numeric" /></label>
+          <label>Email *<input type="email" name="email" placeholder="you@email.com" required autocomplete="email" /></label>
+        </div>
+        <div class="row2">
+          <label>Your level *<select name="level" required><option value="">Choose level</option><option>Just starting</option><option>Intermediate</option><option>Competitive</option></select></label>
+          <label>Area of Lucknow *<select name="area" required><option value="">Your area</option><option>Gomti Nagar</option><option>Hazratganj</option><option>Indira Nagar</option><option>Aliganj</option><option>Alambagh</option><option>Vibhuti Khand</option><option>Vikas Nagar</option><option>Other</option></select></label>
+        </div>
+        <div class="sport-check">
+          <span>Sports you want to play *</span>
+          <div class="chips" id="sportChips">
+            <label class="chip"><input type="checkbox" name="sports" value="Football" /><span>⚽ Football</span></label>
+            <label class="chip"><input type="checkbox" name="sports" value="Cricket" /><span>🏏 Cricket</span></label>
+            <label class="chip"><input type="checkbox" name="sports" value="Badminton" /><span>🏸 Badminton</span></label>
+            <label class="chip"><input type="checkbox" name="sports" value="Basketball" /><span>🏀 Basketball</span></label>
+            <label class="chip"><input type="checkbox" name="sports" value="Pickleball" /><span>🎾 Pickleball</span></label>
+          </div>
+        </div>
+        <label class="agree"><input type="checkbox" required /><span>I agree to receive match invites by WhatsApp and email, and to play fair.</span></label>
+        <button class="btn btn-gold btn-block" type="submit">Enter the draft <span>→</span></button>
+        <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORIES ============ -->
+<section id="stories">
+  <div class="container">
+    <span class="kicker">From the dugout</span>
+    <h2 class="sec-title">Stories from the <em>community</em></h2>
+    <div class="story-grid" id="storyGrid">
+      <figure class="story card">
+        <span class="story-mark" aria-hidden="true">“</span>
+        <div class="story-stars" aria-label="Rated 5 out of 5">★★★★★</div>
+        <blockquote>I used to message ten groups just to find five players. Two taps in Match Arena and I’m on the pitch the same evening.</blockquote>
+        <figcaption>
+          <span class="story-av" aria-hidden="true">RM</span>
+          <span class="story-who"><b>Rahul Mehta</b><span>Community Player · Delhi</span></span>
+        </figcaption>
+      </figure>
+      <figure class="story card">
+        <span class="story-mark" aria-hidden="true">“</span>
+        <div class="story-stars" aria-label="Rated 5 out of 5">★★★★★</div>
+        <blockquote>The payment split and auto-reminders changed everything. I no longer chase people for money the night before badminton.</blockquote>
+        <figcaption>
+          <span class="story-av" aria-hidden="true">PS</span>
+          <span class="story-who"><b>Priya Sharma</b><span>Game Organiser · Bangalore</span></span>
+        </figcaption>
+      </figure>
+      <figure class="story card">
+        <span class="story-mark" aria-hidden="true">“</span>
+        <div class="story-stars" aria-label="Rated 5 out of 5">★★★★★</div>
+        <blockquote>I moved cities and still found a weekly basketball run within a week. Match Arena made the new city feel like home.</blockquote>
+        <figcaption>
+          <span class="story-av" aria-hidden="true">AP</span>
+          <span class="story-who"><b>Arjun Patel</b><span>Player · Pune</span></span>
+        </figcaption>
+      </figure>
+      <figure class="story card dup" aria-hidden="true">
+        <span class="story-mark">“</span>
+        <div class="story-stars">★★★★★</div>
+        <blockquote>I used to message ten groups just to find five players. Two taps in Match Arena and I’m on the pitch the same evening.</blockquote>
+        <figcaption>
+          <span class="story-av">RM</span>
+          <span class="story-who"><b>Rahul Mehta</b><span>Community Player · Delhi</span></span>
+        </figcaption>
+      </figure>
+      <figure class="story card dup" aria-hidden="true">
+        <span class="story-mark">“</span>
+        <div class="story-stars">★★★★★</div>
+        <blockquote>The payment split and auto-reminders changed everything. I no longer chase people for money the night before badminton.</blockquote>
+        <figcaption>
+          <span class="story-av">PS</span>
+          <span class="story-who"><b>Priya Sharma</b><span>Game Organiser · Bangalore</span></span>
+        </figcaption>
+      </figure>
+      <figure class="story card dup" aria-hidden="true">
+        <span class="story-mark">“</span>
+        <div class="story-stars">★★★★★</div>
+        <blockquote>I moved cities and still found a weekly basketball run within a week. Match Arena made the new city feel like home.</blockquote>
+        <figcaption>
+          <span class="story-av">AP</span>
+          <span class="story-who"><b>Arjun Patel</b><span>Player · Pune</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAREERS ============ -->
+<!-- IMPORTANT: the Apply buttons below link to Google Forms. Replace each
+     href with your real form link (e.g. https://forms.gle/xxxxx). -->
+<section id="careers" class="tint">
+  <div class="container">
+    <div class="career-hero card reveal">
+      <div class="career-hero-copy">
+        <span class="kicker">Careers</span>
+        <h2 class="sec-title">Build the arena <em>with us.</em></h2>
+        <p class="sec-sub">MatchArena runs on people who love the game as much as the players do.</p>
+      </div>
+      <button class="btn btn-gold" id="careerToggle" aria-expanded="false" aria-controls="careerBody">Join Match Arena Careers <span class="ct-arrow">→</span></button>
+    </div>
+    <div class="career-body" id="careerBody" hidden>
+      <p class="sec-sub">Apply through the Google Form for your role — we reply within a week.</p>
+      <div class="career-grid">
+
+        <article class="career card reveal">
+          <div class="career-ico">🎽</div>
+          <h3>Game Coordinator</h3>
+          <p>Own fixtures end to end — squad drafts, venue checks, player updates and score records for your sport.</p>
+          <a class="career-apply" href="https://forms.gle/REPLACE-game-coordinator" target="_blank" rel="noopener">Apply on Google Form <span>→</span></a>
+        </article>
+
+        <article class="career card reveal">
+          <div class="career-ico">🎤</div>
+          <h3>Match Host</h3>
+          <p>Be the voice of the arena — welcome players, run pre-match briefings, announce teams and keep energy high.</p>
+          <a class="career-apply" href="https://forms.gle/REPLACE-match-host" target="_blank" rel="noopener">Apply on Google Form <span>→</span></a>
+        </article>
+
+        <article class="career card reveal">
+          <div class="career-ico">🧑‍⚖️</div>
+          <h3>Referee / Umpire</h3>
+          <p>Officiate matches across football, cricket, badminton, basketball and pickleball with a working knowledge of the rules.</p>
+          <a class="career-apply" href="https://forms.gle/REPLACE-referee" target="_blank" rel="noopener">Apply on Google Form <span>→</span></a>
+        </article>
+
+        <article class="career card reveal">
+          <div class="career-ico">📍</div>
+          <h3>Venue Scout</h3>
+          <p>Hunt for turf, courts and grounds across Lucknow — and keep MatchArena's venue standards high.</p>
+          <a class="career-apply" href="https://forms.gle/REPLACE-venue-scout" target="_blank" rel="noopener">Apply on Google Form <span>→</span></a>
+        </article>
+
+        <article class="career card reveal">
+          <div class="career-ico">📊</div>
+          <h3>Event Manager</h3>
+          <p>Plan tournaments, ladders and the city cup — logistics, sponsors, prize nights and everything in between.</p>
+          <a class="career-apply" href="https://forms.gle/REPLACE-event-manager" target="_blank" rel="noopener">Apply on Google Form <span>→</span></a>
+        </article>
+
+        <article class="career card reveal">
+          <div class="career-ico">📱</div>
+          <h3>Social Media Creator</h3>
+          <p>Film the moments — reels, match highlights and clubhouse stories that make Lucknow want to play.</p>
+          <a class="career-apply" href="https://forms.gle/REPLACE-social-media" target="_blank" rel="noopener">Apply on Google Form <span>→</span></a>
+        </article>
+
+      </div>
+      <p class="career-note">Don't see your post? Write to <a href="mailto:careers@matcharena.in">careers@matcharena.in</a> and pitch us the role.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <span class="kicker center">Your first draft is free</span>
+      <h2 class="font-display">Ready to enter the <em>arena?</em></h2>
+      <p>Thousands of individual players already found their weekly game. Your court, pitch or crease is waiting.</p>
+      <a class="btn btn-register" href="#register" data-open-reg>Register &amp; get drafted</a>
+      <p class="cta-tag">Five arenas. <em>One city.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section id="social" class="tint">
+  <div class="container social-wrap">
+    <span class="kicker center">Follow the arena</span>
+    <h2 class="sec-title">The club, <em>everywhere.</em></h2>
+    <p class="sec-sub center">Match highlights, fixture drops and clubhouse stories — follow MatchArena on your feed.</p>
+    <div class="social-row">
+      <a class="social-btn" href="https://youtube.com/@matcharena" target="_blank" rel="noopener" aria-label="MatchArena on YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4L15.8 12z"/></svg>
+        <span>YouTube</span>
+      </a>
+      <a class="social-btn" href="https://instagram.com/matcharena" target="_blank" rel="noopener" aria-label="MatchArena on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a class="social-btn" href="https://linkedin.com/company/matcharena" target="_blank" rel="noopener" aria-label="MatchArena on LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg>
+        <span>LinkedIn</span>
+      </a>
+      <a class="social-btn" href="https://x.com/matcharena" target="_blank" rel="noopener" aria-label="MatchArena on X">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z"/></svg>
+        <span>X</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="color:var(--ink)">
+          <span class="brand-mark">MA</span>
+          <span class="brand-name">Match<span class="serif-i">Arena</span></span>
+        </div>
+        <p>Lucknow's premier pick-up sports club. Solo players in, balanced teams out, officiated matches every week across five sports.</p>
+        <p class="founded">Founded by <b>Govind Singh Yadav</b> · Lucknow, India</p>
+      </div>
+      <div class="foot-col">
+        <h4>Club</h4>
+        <a href="#how">The idea</a><a href="#sports">Arenas</a><a href="#live">Match desk</a><a href="#shop" data-open-shop>Shop</a><a href="#careers">Careers</a><a href="#register" data-open-reg>Register</a>
+      </div>
+      <div class="foot-col">
+        <h4>Arenas</h4>
+        <a href="#sport-football">Football</a><a href="#sport-cricket">Cricket</a><a href="#sport-badminton">Badminton</a><a href="#sport-basketball">Basketball</a><a href="#sport-pickleball">Pickleball</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:play@matcharena.in">play@matcharena.in</a>
+        <a href="tel:+919000000000">+91 90000 00000</a>
+        <a href="#register" data-open-reg>Join the draft</a>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 MatchArena, Lucknow. All rights reserved.</span><span class="made">Drafted with pride in Lucknow ⚡</span></div>
+  </div>
+</footer>
+
+<!-- ============ REGISTER POPUP (the form is moved in here on open) ============ -->
+<div class="reg-modal" id="regModal" role="dialog" aria-modal="true" aria-labelledby="regModalTitle" aria-hidden="true">
+  <div class="reg-backdrop" data-reg-close></div>
+  <div class="reg-box">
+    <div class="reg-box-head">
+      <div class="reg-box-id">
+        <span class="kicker">Join the club</span>
+        <h3 id="regModalTitle">Register <em>&amp; get drafted</em></h3>
+        <p>Thirty seconds · no team, no experience required · we handle the rest.</p>
+      </div>
+      <button type="button" class="reg-close" data-reg-close aria-label="Close registration form">✕</button>
+    </div>
+    <div class="reg-box-body" id="regBoxBody"></div>
+  </div>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="cart-overlay" id="cartOverlay" data-cart-close></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="MatchArena shop and cart">
+  <div class="cart-head">
+    <h3>MatchArena Shop</h3>
+    <button class="cart-close" data-cart-close aria-label="Close shop and cart">✕</button>
+  </div>
+  <div class="cart-tabs" role="tablist" aria-label="Shop or cart">
+    <button class="cart-tab active" data-ctab="shop" role="tab" aria-selected="true">🛍️ Shop</button>
+    <button class="cart-tab" data-ctab="cart" role="tab" aria-selected="false">🛒 Cart (<b id="cartTabCount">0</b>)</button>
+  </div>
+  <div class="cart-view" id="shopView"></div>
+  <div class="cart-view" id="cartView">
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot">
+      <div class="cart-total"><span>Total</span><b id="cartTotal">₹0</b></div>
+      <a class="btn btn-gold btn-block" id="cartCheckout" href="https://wa.me/919000000000" target="_blank" rel="noopener">Checkout on WhatsApp <span>→</span></a>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ AUTH: sign in / sign up ============ -->
+<div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" aria-hidden="true">
+  <div class="auth-backdrop" data-auth-close></div>
+  <div class="auth-box">
+    <div class="auth-head">
+      <div>
+        <span class="kicker">Player account</span>
+        <h3 id="authTitle">Sign in <em>&amp; level up</em></h3>
+      </div>
+      <button type="button" class="auth-close" data-auth-close aria-label="Close sign in">✕</button>
+    </div>
+    <div class="auth-tabs" role="tablist" aria-label="Sign-in method">
+      <button class="auth-tab active" data-atab="google" role="tab" aria-selected="true"><span>G</span> Google</button>
+      <button class="auth-tab" data-atab="email" role="tab" aria-selected="false">✉ Email</button>
+      <button class="auth-tab" data-atab="phone" role="tab" aria-selected="false">💬 Phone</button>
+    </div>
+    <div class="auth-panes">
+      <div class="auth-pane" data-pane="google">
+        <div id="gisMount" class="gis-mount"><button type="button" class="btn btn-ghost btn-block" id="gisFallback" disabled>Continue with Google</button></div>
+        <p class="auth-note" id="gisNote">Google Sign-In · set <b>GOOGLE_CLIENT_ID</b> in <b>backend/.env</b> to enable.</p>
+      </div>
+      <div class="auth-pane" data-pane="email" hidden>
+        <form id="emailForm" novalidate>
+          <label class="auth-name" hidden>Full name *<input type="text" name="ename" autocomplete="name" placeholder="Your name" maxlength="60" /></label>
+          <label>Email address *<input type="email" name="eemail" required autocomplete="email" placeholder="you@email.com" /></label>
+          <label>Password *<input type="password" name="epass" required autocomplete="current-password" minlength="8" placeholder="8+ characters" /></label>
+          <button class="btn btn-gold btn-block" type="submit" id="emailSubmit">Sign in <span>→</span></button>
+        </form>
+        <button class="auth-switch" id="emailSwitch" type="button">New here? Create an account →</button>
+      </div>
+      <div class="auth-pane" data-pane="phone" hidden>
+        <form id="phoneForm" novalidate>
+          <label>WhatsApp number *<input type="tel" name="pnum" required inputmode="tel" autocomplete="tel" placeholder="98xxxxxxxx" /></label>
+          <button class="btn btn-gold btn-block" type="submit">Send OTP on WhatsApp <span>→</span></button>
+        </form>
+        <form id="otpForm" novalidate hidden>
+          <label>6-digit code *<input type="text" name="ocode" required inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••" pattern="\d{6}" /></label>
+          <label class="auth-name" hidden>Full name *<input type="text" name="oname" autocomplete="name" placeholder="Your name" maxlength="60" /></label>
+          <button class="btn btn-gold btn-block" type="submit">Verify &amp; enter <span>→</span></button>
+        </form>
+        <p class="auth-note" id="otpNote" hidden></p>
+        <button class="auth-switch" id="otpResend" type="button" hidden>Resend the code</button>
+        <button class="auth-switch" id="otpBack" type="button" hidden>← Change number</button>
+      </div>
+    </div>
+    <div class="auth-msg" id="authMsg" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- ============ PROFILE DRAWER + FIFA FC PLAYER CARD ============ -->
+<div class="prof-overlay" id="profOverlay" data-prof-close></div>
+<aside class="prof-drawer" id="profDrawer" aria-label="Your player profile" aria-hidden="true">
+  <div class="prof-head">
+    <h3>My locker</h3>
+    <button class="prof-close" data-prof-close aria-label="Close profile">✕</button>
+  </div>
+  <div class="prof-id">
+    <label class="prof-pic" for="avatarInput" title="Change profile photo">
+      <img id="profImg" alt="" hidden /><span id="profInitials">?</span>
+      <input type="file" id="avatarInput" accept="image/png,image/jpeg,image/webp" hidden />
+      <i class="prof-pic-hint">📷</i>
+    </label>
+    <div class="prof-idtxt">
+      <b id="profName">Player</b>
+      <span id="profSub">—</span>
+    </div>
+  </div>
+  <div class="prof-rename">
+    <input id="renameInput" maxlength="60" aria-label="Display name" placeholder="Display name" />
+    <button class="btn btn-ghost btn-sm" id="renameBtn" type="button">Save</button>
+  </div>
+  <div class="fc-wrap" id="fcWrap"></div>
+  <div class="prof-actions">
+    <button class="btn btn-gold btn-sm" id="demoMatch" type="button" hidden>⚽ Record a match (dev)</button>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn" type="button">Sign out</button>
+  </div>
+  <p class="prof-note">Your card upgrades after every match you play — PAC, SHO, PAS, DRI, DEF, PHY and the overall rating all grow with real results.</p>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="app.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>
